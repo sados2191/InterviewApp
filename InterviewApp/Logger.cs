@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace InterviewApp
 {
-    public static class Loger
+    public static class Logger
     {
         #region Properties
         /// <summary>
@@ -65,7 +65,7 @@ namespace InterviewApp
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error: {e.Message}");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Possible fix: Start the application with the administrator permission");
+                Console.WriteLine("Start the application with the administrator permission");
                 Console.ResetColor();
                 return false;
             }
@@ -139,6 +139,15 @@ namespace InterviewApp
                     }
                 }
             }
+            catch(FileNotFoundException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {e.Message}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("No logs found.");
+                Console.WriteLine("Add some logs to the file before reading from it.");
+                Console.ResetColor();
+            }
             catch(Exception e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -173,8 +182,9 @@ namespace InterviewApp
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Add something to the Registry before reading from it");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("No logs found.");
+                Console.WriteLine("Add some logs to the Registry before reading from it.");
                 Console.ResetColor();
             }
         }

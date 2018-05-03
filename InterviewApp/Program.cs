@@ -18,9 +18,9 @@ namespace InterviewApp
                 Console.WriteLine("Simple Logger");
                 Console.ResetColor();
                 Console.WriteLine("Choose an option:");
-                Console.WriteLine("1 - Save a log to the file");
-                Console.WriteLine("2 - Save a log to the EventLog");
-                Console.WriteLine("3 - Save s log to the registry");
+                Console.WriteLine("1 - Add a log to the file");
+                Console.WriteLine("2 - Add a log to the EventLog");
+                Console.WriteLine("3 - Add a log to the Registry");
                 Console.WriteLine("4 - Read saved entries from the file ");
                 Console.WriteLine("5 - Read saved entries from the EventLog");
                 Console.WriteLine("6 - Read saved entries from the Registry");
@@ -34,12 +34,12 @@ namespace InterviewApp
                 {
                     case '1':
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine($"Adding log to the file, path: {Loger.FilePath}");
+                        Console.WriteLine($"Adding log to the file, path: {Logger.FilePath}");
                         Console.ResetColor();
                         Console.WriteLine();
                         Console.WriteLine("Write a content of the log");
 
-                        if(Loger.LogToFile(Console.ReadLine()))
+                        if(Logger.LogToFile(Console.ReadLine()))
                             Console.WriteLine("Log was added");
                         else
                             Console.WriteLine("Adding the log failed");
@@ -47,12 +47,12 @@ namespace InterviewApp
                         break;
                     case '2':
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine($"Adding log to the EventLog as source: {Loger.EventLogSource}");
+                        Console.WriteLine($"Adding log to the EventLog as source: {Logger.EventLogSource}");
                         Console.ResetColor();
                         Console.WriteLine();
                         Console.WriteLine("Write a content of the log");
 
-                        if(Loger.LogToEventLog(Console.ReadLine()))
+                        if(Logger.LogToEventLog(Console.ReadLine()))
                             Console.WriteLine("Log was added");
                         else
                             Console.WriteLine("Adding the log failed");
@@ -60,23 +60,23 @@ namespace InterviewApp
                         break;
                     case '3':
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.WriteLine($"Adding log to the Registry, path: {Loger.RegistryKey}");
+                        Console.WriteLine($"Adding log to the Registry, path: {Logger.RegistryKey}");
                         Console.ResetColor();
                         Console.WriteLine();
                         Console.WriteLine("Write a content of the log");
 
-                        if (Loger.LogToRegistry(Console.ReadLine()))
+                        if (Logger.LogToRegistry(Console.ReadLine()))
                             Console.WriteLine("Log was added");
                         else
                             Console.WriteLine("Adding the log failed");
 
                         break;
                     case '4':
-                        Loger.ReadFromFile();
+                        Logger.ReadFromFile();
 
                         break;
                     case '5':
-                        List<EventLogEntry> entries = Loger.ReadFromEventLog();
+                        List<EventLogEntry> entries = Logger.ReadFromEventLog();
                         if (entries.Count > 0)
                         {
                             foreach (var entry in entries)
@@ -86,14 +86,15 @@ namespace InterviewApp
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Add something to the EventLog before reading form it");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("No logs found.");
+                            Console.WriteLine("Add logs to the EventLog before reading form it.");
                             Console.ResetColor();
                         }
 
                         break;
                     case '6':
-                        Loger.ReadFromRegistry();
+                        Logger.ReadFromRegistry();
 
                         break;
                     case '0':
@@ -103,6 +104,7 @@ namespace InterviewApp
                 }
                 #endregion
 
+                Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             } while (option != '0');
