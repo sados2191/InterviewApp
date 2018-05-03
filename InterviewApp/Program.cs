@@ -29,6 +29,7 @@ namespace InterviewApp
                 Console.Clear();
                 #endregion
 
+                #region Switch
                 switch (option)
                 {
                     case '1':
@@ -100,6 +101,7 @@ namespace InterviewApp
 
                         break;
                 }
+                #endregion
 
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
