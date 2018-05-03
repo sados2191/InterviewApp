@@ -101,6 +101,9 @@ namespace InterviewApp
                         Console.WriteLine("Exiting...");
 
                         break;
+                    default:
+                        Console.WriteLine("Wrong option!");
+                        break;
                 }
                 #endregion
 
