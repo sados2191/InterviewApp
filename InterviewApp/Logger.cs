@@ -87,7 +87,7 @@ namespace InterviewApp
             {
                 using (StreamWriter sw = new StreamWriter(FilePath, true))
                 {
-                    sw.WriteLine($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} \"{message}\"");
+                    sw.WriteLine($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} {message}");
                     sw.Close();
                 }
                 return true;
